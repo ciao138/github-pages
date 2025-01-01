@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettera in Busta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            right:10%;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            width: 200%;
+            height: 100%;
+            position: relative;
+            background: #f5deb3; /* Colore busta */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .envelope-top {
+            width: 100%;
+            height: 49.5%;
+            background: #deb887; /* Colore piega della busta */
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+            border-radius: 10px 10px 0 0;
+        }
+ .envelope-down {
+            width: 100%;
+            height: 50%;
+            background: #deb887; /* Colore piega della busta */
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+            border-radius: 0 0 10px 10px;
+        }
+
+
+        .seal {
+            width: 50px;
+            height: 50px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        .envelope-container.open .seal{
+            transform: translateY(-400%);
+            transition: transform 0.4s ease-in-out;
+            z-index: 1;
+
+        }
+        .letter {
+            position: absolute;
+            top: -55%;
+            left: 0;
+            width: 180%;
+            height: 100%;
+            left:10%;
+            background: white;
+            border-radius: 10px;
+            transform: translateY(+100%);
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        .letter h5 {
+            font-size: 13px;
+            margin: 0;
+            color: #333;
+        }
+
+        .letter p {
+            font-size: 11px;
+            color: #555;
+            margin: 5px 0 0;
+        }
+
+      
+        .envelope-container.open .envelope-top {
+            transform: rotateX(-180deg);
+          border-radius: 0 0 10px 10px;
+        }
+
+        .envelope-container.open .letter {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-container" id="envelopeBox">
+        <div class="envelope">
+            <div class="envelope-top"></div>
+            <div class="seal"></div>
+            <div class="envelope-down"></div>
+        </div>
+        <div class="letter" id="letterContent">
+            <h5>Gentili ospiti,</h5>
+
+<p>con grande dispiacere comunichiamo che, a causa delle condizioni di salute del signor Thompson, la festa prevista per il 02/01/1961 non potrà avere luogo.</p>
+
+<p>Il signor Thompson non si sente bene e, per garantire la sua piena guarigione e il miglior recupero possibile, abbiamo deciso di rimandare l'evento a data da destinarsi.</p>
+
+<p>Ci scusiamo sinceramente per eventuali disagi causati e vi aggiorneremo non appena avremo una nuova data da proporre.</p>
+
+<p>Nel frattempo, vi ringraziamo per la vostra comprensione e vi auguriamo il meglio.</p>
+
+<p>Cordiali saluti,</p>
+<p><strong>C. Thompson</strong></p>
+           
+        </div>
+    </div>
+
+    <script>
+        const envelopeBox = document.getElementById('envelopeBox');
+
+        envelopeBox.addEventListener('click', () => {
+            envelopeBox.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
